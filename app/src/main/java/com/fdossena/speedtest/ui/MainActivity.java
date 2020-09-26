@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
                                 ssid = (wifiInfo.getSSID());
                                 wifi_info.setText("WIFI " + ssid + " MAC " + bssid + " RSSI " + rssi);
                             } else {
-                                wifi_info.setText("Нет WIFI");
+                                wifi_info.setText("Нет WIFI ");
                             }
                         }
                 });
