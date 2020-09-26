@@ -2,9 +2,15 @@ package com.fdossena.speedtest.ui;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -20,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.app.DialogFragment;
 
 import com.fdossena.speedtest.core.Speedtest;
 import com.fdossena.speedtest.core.config.SpeedtestConfig;
@@ -37,22 +44,16 @@ import java.util.Locale;
 
 import your.name.here.speedtest.R;
 
+
 public class MainActivity extends Activity {
     public int rssi = 0;
     public String bssid = "";
     public String ssid = "";
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        TextView wifi_info = (TextView) findViewById(R.id.wifi_bssid);
-        bssid = (wifiInfo.getBSSID());
-        rssi = (wifiInfo.getRssi());
-        ssid = (wifiInfo.getSSID());
-        wifi_info.setText("WIFI "+ssid+" MAC "+bssid+" RSSI "+rssi);
+
         transition(R.id.page_splash,0);
         new Thread(){
             public void run(){
@@ -89,6 +90,7 @@ public class MainActivity extends Activity {
     private static Speedtest st=null;
 
     private void page_init(){
+
         new Thread(){
             @Override
             public void run() {
@@ -105,6 +107,26 @@ public class MainActivity extends Activity {
                         t.setText(R.string.init_init);
                     }
                 });
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ConnectivityManager connManager = (ConnectivityManager)  getApplicationContext().getSystemService(CONNECTIVITY_SERVICE);
+                        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+                        TextView wifi_info = (TextView) findViewById(R.id.wifi_bssid);
+                            if (mWifi.isConnected()) {
+                                WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+                                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                                bssid = (wifiInfo.getBSSID());
+                                rssi = (wifiInfo.getRssi());
+                                ssid = (wifiInfo.getSSID());
+                                wifi_info.setText("WIFI " + ssid + " MAC " + bssid + " RSSI " + rssi);
+                            } else {
+                                wifi_info.setText("Нет WIFI");
+                            }
+                        }
+                });
+
+
                 SpeedtestConfig config=null;
                 TelemetryConfig telemetryConfig=null;
                 TestPoint[] servers=null;
@@ -540,3 +562,4 @@ public class MainActivity extends Activity {
     }
 
 }
+
