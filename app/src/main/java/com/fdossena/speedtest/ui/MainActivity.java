@@ -259,7 +259,10 @@ public class MainActivity extends Activity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reinitOnResume=false;
+                FragmentManager manager = getFragmentManager();
+                MyDialogFragment myDialogFragment = new MyDialogFragment();
+                myDialogFragment.show(manager, "myDialog");
+                reinitOnResume=true;
                 page_test(availableServers.get(spinner.getSelectedItemPosition()));
                 b.setOnClickListener(null);
             }

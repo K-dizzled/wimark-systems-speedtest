@@ -23,4 +23,6 @@
     <string name="testFail_retry">Попробовать снова</string>
     <string name="privacy_open"><u>Privacy</u></string>
     <string name="privacy_close"><u>Back</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
