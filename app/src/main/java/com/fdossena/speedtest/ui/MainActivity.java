@@ -1,10 +1,13 @@
 package com.fdossena.speedtest.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -35,11 +38,21 @@ import java.util.Locale;
 import your.name.here.speedtest.R;
 
 public class MainActivity extends Activity {
-
+    public int rssi = 0;
+    public String bssid = "";
+    public String ssid = "";
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        TextView wifi_info = (TextView) findViewById(R.id.wifi_bssid);
+        bssid = (wifiInfo.getBSSID());
+        rssi = (wifiInfo.getRssi());
+        ssid = (wifiInfo.getSSID());
+        wifi_info.setText("WIFI "+ssid+" MAC "+bssid+" RSSI "+rssi);
         transition(R.id.page_splash,0);
         new Thread(){
             public void run(){
@@ -70,6 +83,7 @@ public class MainActivity extends Activity {
                 page_init();
             }
         }.start();
+
     }
 
     private static Speedtest st=null;
