@@ -155,48 +155,6 @@
                 android:paddingBottom="@dimen/startButton_vPadding"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/privacy_open"
-                android:layout_centerHorizontal="true"
-                android:paddingBottom="@dimen/margin_medium"
-                android:id="@+id/privacy_open"
-                android:layout_below="@id/start"
-                android:layout_marginTop="@dimen/margin_sep"
-                android:textColor="@color/privacyLinks"
-                android:textSize="@dimen/privacyLinks"
-                />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/page_privacy"
-            android:visibility="invisible"
-            android:background="@color/appBackground"
-            >
-            <WebView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@id/privacy_close"
-                android:id="@+id/privacy_policy"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:paddingBottom="@dimen/margin_medium"
-                android:layout_marginTop="@dimen/margin_sep"
-                android:text="@string/privacy_close"
-                android:id="@+id/privacy_close"
-                android:textColor="@color/privacyLinks"
-                android:textSize="@dimen/privacyLinks"
-                />
-
         </RelativeLayout>
 
         <ScrollView
@@ -523,19 +481,6 @@
                         android:layout_marginEnd="@dimen/margin_smallSep"
                         />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/shareButton_text"
-                        android:id="@+id/shareButton"
-                        android:background="@color/shareButton_background"
-                        android:textColor="@color/shareButton_text"
-                        android:text="@string/test_share"
-                        android:paddingLeft="@dimen/shareButton_hPadding"
-                        android:paddingRight="@dimen/shareButton_hPadding"
-                        android:paddingTop="@dimen/shareButton_vPadding"
-                        android:paddingBottom="@dimen/shareButton_vPadding"
-                        />
                 </LinearLayout>
             </RelativeLayout>
         </ScrollView>

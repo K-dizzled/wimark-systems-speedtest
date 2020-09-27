@@ -137,14 +137,7 @@ public class MainActivity extends Activity {
                     c=readFileFromAssets("TelemetryConfig.json");
                     o=new JSONObject(c);
                     telemetryConfig=new TelemetryConfig(o);
-                    if(telemetryConfig.getTelemetryLevel().equals(TelemetryConfig.LEVEL_DISABLED)){
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                hideView(R.id.privacy_open);
-                            }
-                        });
-                    }
+
                     if(st!=null){
                         try{st.abort();}catch (Throwable e){}
                     }
@@ -267,27 +260,6 @@ public class MainActivity extends Activity {
                 b.setOnClickListener(null);
             }
         });
-        TextView t=(TextView)findViewById(R.id.privacy_open);
-        t.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                page_privacy();
-            }
-        });
-    }
-
-    private void page_privacy(){
-        transition(R.id.page_privacy,TRANSITION_LENGTH);
-        reinitOnResume=false;
-        ((WebView)findViewById(R.id.privacy_policy)).loadUrl(getString(R.string.privacy_policy));
-        TextView t=(TextView)findViewById(R.id.privacy_close);
-        t.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                transition(R.id.page_serverSelect,TRANSITION_LENGTH);
-                reinitOnResume=true;
-            }
-        });
     }
 
     private void page_test(final TestPoint selected){
@@ -318,7 +290,7 @@ public class MainActivity extends Activity {
         ViewGroup.LayoutParams p=endTestArea.getLayoutParams();
         p.height=0;
         endTestArea.setLayoutParams(p);
-        findViewById(R.id.shareButton).setVisibility(View.GONE);
+        //findViewById(R.id.shareButton).setVisibility(View.GONE);
         st.start(new Speedtest.SpeedtestHandler() {
             @Override
             public void onDownloadUpdate(final double dl, final double progress) {
@@ -366,10 +338,10 @@ public class MainActivity extends Activity {
                 });
             }
 
-            @Override
+           @Override
             public void onTestIDReceived(final String id, final String shareURL) {
                 if(shareURL==null||shareURL.isEmpty()||id==null||id.isEmpty()) return;
-                runOnUiThread(new Runnable() {
+               /* runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         Button shareButton=(Button)findViewById(R.id.shareButton);
@@ -385,7 +357,7 @@ public class MainActivity extends Activity {
                             }
                         });
                     }
-                });
+                });*/
             }
 
             @Override
@@ -496,9 +468,7 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if(currentPage==R.id.page_privacy)
-            transition(R.id.page_serverSelect,TRANSITION_LENGTH);
-        else super.onBackPressed();
+        super.onBackPressed();
     }
 
     //PAGE TRANSITION SYSTEM
