@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 public class MyDialogFragment extends  DialogFragment {
     public boolean wifi_room;
@@ -18,6 +19,10 @@ public class MyDialogFragment extends  DialogFragment {
         builder.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 wifi_room = true;
+                SharedPreferences pref = getActivity().getSharedPreferences("number_of_rooms", 0);
+                SharedPreferences.Editor editor = pref.edit();  //open settings editor
+                editor.putBoolean("wifi_in_room", wifi_room); //save changes
+                editor.apply();
                 FragmentManager manager = getFragmentManager();
                 Dialog2 dialog2 = new Dialog2();
                 dialog2.show(manager, "myDialog");
@@ -26,6 +31,10 @@ public class MyDialogFragment extends  DialogFragment {
         builder.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 wifi_room = false;
+                SharedPreferences pref = getActivity().getSharedPreferences("number_of_rooms", 0);
+                SharedPreferences.Editor editor = pref.edit();  //open settings editor
+                editor.putBoolean("wifi_in_room", wifi_room); //save changes
+                editor.apply();
                 FragmentManager manager = getFragmentManager();
                 Dialog2 dialog2 = new Dialog2();
                 dialog2.show(manager, "myDialog");

@@ -119,7 +119,7 @@ public class MainActivity extends Activity {
                                 bssid = (wifiInfo.getBSSID());
                                 rssi = (wifiInfo.getRssi());
                                 ssid = (wifiInfo.getSSID());
-                                wifi_info.setText("WIFI " + ssid + " MAC " + bssid + " RSSI " + rssi);
+                                wifi_info.setText("WIFI " + ssid + "\nMAC " + bssid + "\nRSSI " + rssi);
                             } else {
                                 wifi_info.setText("Нет WIFI ");
                             }
