@@ -8,7 +8,7 @@ import android.os.Bundle;
 public class MyDialogFragment extends  DialogFragment {
     public boolean wifi_room;
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        String title = "Расположение";
+        String title = "Ваше местоположение";
         String message = "Вы находитесь в комнате с WIFI роутером?";
         String button1String = "Да";
         String button2String = "Нет";
