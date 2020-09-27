@@ -118,6 +118,22 @@
             android:visibility="invisible"
             >
 
+            <Button
+                android:id="@+id/default_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_sep"
+                android:background="@color/startButton_background"
+                android:textColor="@color/startButton_text"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/serverList"
+                android:textSize="16dp"
+                android:paddingLeft="@dimen/startButton_hPadding"
+                android:paddingRight="@dimen/startButton_hPadding"
+                android:paddingTop="@dimen/startButton_vPadding"
+                android:paddingBottom="@dimen/startButton_vPadding"
+                android:text="@string/start_default" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -145,7 +161,7 @@
                 android:text="@string/start"
                 android:id="@+id/start"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/serverList"
+                android:layout_below="@id/default_start"
                 android:background="@color/startButton_background"
                 android:textColor="@color/startButton_text"
                 android:textSize="@dimen/startButton_text"

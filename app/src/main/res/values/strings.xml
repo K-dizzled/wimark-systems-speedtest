@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">LibreSpeed Android Template</string>
+    <string name="app_name">WS WIFI test</string>
     <string name="logo_inapp_link">https://github.com/librespeed/speedtest-android</string>
     <string name="privacy_policy">file:///android_asset/privacy_en.html</string>
 
-
+    <string name="start_default">Старт с предыдущими настройками</string>
     <string name="init_init">Загрузка</string>
     <string name="initFail_configError">Configuration error</string>
     <string name="initFail_retry">Попробовать снова</string>
